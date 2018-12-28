@@ -1,2 +1,2 @@
 # ExpExport
-Sonicwall firewall configuration report generator which include every parameters in the EXP file
+Sonicwall firewall configuration report generator by including every parameters in the EXP file
