@@ -202,7 +202,7 @@ with open(fname+'.html', 'w') as myfile:
 	vcol = 0
 	valrow = ""
 	if idx+1<len(config) and config[idx][2].isdigit() and config[idx][2] == config[idx+1][2]:
-	        while idx+col<=len(config) and config[idx+col][2].isdigit() and int(config[idx][2]) == int(config[idx + col][2]):
+	        while idx+col<len(config) and config[idx+col][2].isdigit() and int(config[idx][2]) == int(config[idx + col][2]):
 		#	print str(idx) + "\t" + str(col) + "\t" + config[idx + col][1] + "\t" + config[idx + col][2]
 			headrow = headrow + "\t\t<td>" + config[idx + col][1] + "</td>"
 			col = col + 1
