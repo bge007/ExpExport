@@ -10,7 +10,6 @@ import base64
 decoded_data = []
 
 if re.search('\.exp$', sys.argv[1], re.IGNORECASE):
-    print "EXP...:"
     with open(sys.argv[1], 'r') as f:
         read_data = f.readline()
     f.close()
@@ -18,7 +17,6 @@ if re.search('\.exp$', sys.argv[1], re.IGNORECASE):
     decoded_data = decoded_str.split("&")
 
 else:
-    print "Text...:"
     file = open(sys.argv[1], 'r')
     ii = 0
     for line in file: 
@@ -202,16 +200,17 @@ with open(fname+'.html', 'w') as myfile:
 	vcol = 0
 	valrow = ""
 	if idx+1<len(config) and config[idx][2].isdigit() and config[idx][2] == config[idx+1][2]:
-	        while idx+col<len(config) and config[idx+col][2].isdigit() and int(config[idx][2]) == int(config[idx + col][2]):
-		#	print str(idx) + "\t" + str(col) + "\t" + config[idx + col][1] + "\t" + config[idx + col][2]
+	        while idx+col<=len(config) and config[idx+col][2].isdigit() and int(config[idx][2]) == int(config[idx+col][2]):
 			headrow = headrow + "\t\t<td>" + config[idx + col][1] + "</td>"
 			col = col + 1
                 grplst = 0
                 #print config[idx][2]
                 #print config[idx+1][2]
                 rowvalue = ""
-                while idx+1<=len(config) and config[idx+1][2].isdigit() and int(config[idx][2]) <= int(config[idx+1][2]): 
-                #while idx+1<=len(config) and int(config[idx][2]) <= int(config[idx+1][2]): 
+                #while idx+1<=len(config) and int(config[idx][2]) <= int(config[idx+1][2]):  ##Logic error......
+                while idx+1<=len(config) and config[idx][2].isdigit() and config[idx+1][2].isdigit() and int(config[idx][2]) <= int(config[idx+1][2]):
+                    #print "XXXXX:" + str(type(int(config[idx+1][2]))) + " - " + str(int(config[idx+1][2]))
+                    #while idx+1<=len(config) and int(config[idx][2]) <= int(config[idx+1][2]): 
 		    i = int(config[idx][2])
                     #print ('%s \t %s' % (config[idx][2], config[idx+1][2])) 
                     #////to do from here for the table row population....
@@ -225,13 +224,12 @@ with open(fname+'.html', 'w') as myfile:
                     valrow = valrow + "\n\t\t</tr>"
                     rowvalue = rowvalue + valrow
                     if idx < len(config) and config[idx][2].isdigit() and int(config[idx-1][2]) > int(config[idx][2]): 
-                        print (str(config[idx+1][2]) + " \t\t " + str(config[idx][2]) + " \t\t " + str(idx))
                         break
                 conftable =  newtable + headrow + rowvalue + closetable + "<br>"
                 myfile.write('%s\r\n' % urllib.unquote(conftable))
         else:
-            idx = idx + 1
             rowvalue = "\n\t\t<tr><td>" + str(config[idx][1]) + "&nbsp;</td><td>" + str(config[idx][2]) + "&nbsp;</td><td> " + str(config[idx][3]).replace('\n','<br>\n')+"&nbsp;</td></tr>"
+            idx = idx + 1
             conftable =  newtable + rowvalue + closetable + "<br>"
             myfile.write('%s\r\n' % urllib.unquote(conftable))
 
@@ -240,3 +238,4 @@ with open(fname+'.html', 'w') as myfile:
 
 myfile.close()
 
+print "Written to: " + fname + ".html"
