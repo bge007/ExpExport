@@ -3,3 +3,5 @@ Sonicwall firewall configuration report generator by including every values from
 
 few vars like addrObj is repeating which need to check and confirm
 
+need to add differrence report generation option
+
