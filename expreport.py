@@ -18,8 +18,8 @@ def file_write(config, fname, ftype):
             myfile.write('<body">\r\n')
             # myfile.write('<table border=1>\r\n')
 
-        newtable = "<table border=1>\r\n"
-        closetable = "</table>\r\n"
+        newtable = "<table border=1>\n"
+        closetable = "</table>\n"
 
         idx = 0
         # msg = ""
@@ -38,7 +38,7 @@ def file_write(config, fname, ftype):
                     if (ftype == "html"):
                         headrow = headrow + "\t\t<td>" + config[idx + col][1] + "</td>"
                     else:
-                        headrow = headrow + "\t\t" + config[idx + col][1] + "\t"
+                        headrow = headrow + "\t" + config[idx + col][1] + "\t"
 
                     col = col + 1
                 # grplst = 0
