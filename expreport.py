@@ -26,9 +26,9 @@ def file_write(config, fname, ftype):
         # while idx < len(config):  ###### enable loop here..
         while idx < len(config):  # remove after testing...
             if (ftype == "html"):
-                headrow = '\n\t<tr><td>' + config[idx][0] + ' </td>'
+                headrow = '\n\t<tr><td>' + config[idx][0] + '</td>'
             else:
-                headrow = '\n\t' + config[idx][0]
+                headrow = '\n\t' + config[idx][0] + "\t"
 
             col = 0  # to have the value of "j" start from 0 as "i" may not be 0 always...
             # vcol = 0
@@ -38,7 +38,7 @@ def file_write(config, fname, ftype):
                     if (ftype == "html"):
                         headrow = headrow + "\t\t<td>" + config[idx + col][1] + "</td>"
                     else:
-                        headrow = headrow + "\t\t" + config[idx + col][1]
+                        headrow = headrow + "\t\t" + config[idx + col][1] + "\t"
 
                     col = col + 1
                 # grplst = 0
@@ -55,7 +55,7 @@ def file_write(config, fname, ftype):
                     if (ftype == "html"):
                         valrow = "\n\t\t<tr><td>"+config[idx][2]+" </td>"
                     else:
-                        valrow = "\n\t\t"+config[idx][2]
+                        valrow = "\n\t\t"+config[idx][2] + "\t"
 
                     while idx < len(config) and config[idx][2].isdigit() and i == int(config[idx][2]):
                         if (ftype == "html"):
@@ -64,7 +64,7 @@ def file_write(config, fname, ftype):
                                     '\n', '<br>\n') + "</td>\r\n"
                         else:
                             valrow = valrow + "\t\t" + \
-                                urllib.unquote(str(config[idx][3])) + "\r\n"
+                                urllib.unquote(str(config[idx][3])) + "\t"
                         idx = idx + 1
 
                     if (ftype == "html"):
@@ -79,21 +79,21 @@ def file_write(config, fname, ftype):
                 if(ftype == "html"):
                     conftable = newtable + headrow + rowvalue + closetable + "<br>"
                 else:
-                    conftable = newtable + headrow + rowvalue + closetable + "\n"
+                    conftable = headrow + rowvalue + "\n"
                 myfile.write('%s\r\n' % urllib.unquote(conftable))
             else:
                 if(ftype == "html"):
                     rowvalue = "\n\t\t<tr><td>" + str(config[idx][1]) + "&nbsp;</td><td>" + str(
                         config[idx][2]) + "&nbsp;</td><td> " + str(config[idx][3]).replace('\n', '<br>\n')+"&nbsp;</td></tr>"
                 else:
-                    rowvalue = "\n\t\t" + str(config[idx][1]) + " " + str(
-                        config[idx][2]) + "\t" + str(config[idx][3])
+                    rowvalue = "\n\t\t" + str(config[idx][1]) + "\t" + str(
+                        config[idx][2]) + "\t" + str(config[idx][3]) + "\n"
                 idx = idx + 1
 
                 if(ftype == "html"):
                     conftable = newtable + rowvalue + closetable + "<br>"
                 else:
-                    conftable = newtable + rowvalue + closetable + "\n"
+                    conftable = rowvalue + "\n"
 
                 myfile.write('%s\r\n' % urllib.unquote(conftable))
 
