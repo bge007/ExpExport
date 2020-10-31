@@ -55,7 +55,7 @@ def file_write(config, fname, ftype):
                     if (ftype == "html"):
                         valrow = "\n\t\t<tr><td>"+config[idx][2]+" </td>"
                     else:
-                        valrow = "\n\t\t"+config[idx][2] + "\t"
+                        valrow = "\n\t"+config[idx][2] + "\t"
 
                     while idx < len(config) and config[idx][2].isdigit() and i == int(config[idx][2]):
                         if (ftype == "html"):
@@ -63,7 +63,7 @@ def file_write(config, fname, ftype):
                                 urllib.unquote(str(config[idx][3])).replace(
                                     '\n', '<br>\n') + "</td>\r\n"
                         else:
-                            valrow = valrow + "\t\t" + \
+                            valrow = valrow + "\t" + \
                                 urllib.unquote(str(config[idx][3])) + "\t"
                         idx = idx + 1
 
@@ -86,7 +86,7 @@ def file_write(config, fname, ftype):
                     rowvalue = "\n\t\t<tr><td>" + str(config[idx][1]) + "&nbsp;</td><td>" + str(
                         config[idx][2]) + "&nbsp;</td><td> " + str(config[idx][3]).replace('\n', '<br>\n')+"&nbsp;</td></tr>"
                 else:
-                    rowvalue = "\n\t\t" + str(config[idx][1]) + "\t" + str(
+                    rowvalue = "\n\t" + str(config[idx][1]) + "\t" + str(
                         config[idx][2]) + "\t" + str(config[idx][3]) + "\n"
                 idx = idx + 1
 
